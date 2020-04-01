@@ -9,7 +9,11 @@ router.route('/').all((req, res, next) => {
 
   //VALIDATE
   const {error} = artValidation[req.method.toLowerCase()](query)
-  if(error) return res.status(400).json(error.details[0].message);
+  if(error) {
+    console.error(error.details[0].message, query)
+    res.status(400).json(error.details[0].message);
+    return
+  }
 
   //escape single quotes in strings.
   for(let prop in req.body){
@@ -39,7 +43,6 @@ router.route('/').all((req, res, next) => {
   })
 }).patch((req, res) => {
   const {description, name, id} = req.body
-  console.log(req.body)
   const query = `
     UPDATE art
     SET description = '${description}', name = '${name}' where id = ${id}

@@ -20,7 +20,8 @@ router.route('/').all((req, res, next) => {
 
   next()
 }).get((req, res) => {
-  conn.query(`SELECT * FROM art where id = ${req.query.id}`, (err, data) => {
+  const {id} = req.query
+  conn.query(`SELECT * FROM art${id ? ` where id = ${id}` : ''}`, (err, data) => {
     if(err) return handleError(err, res)
     res.json(data.rows)
   })

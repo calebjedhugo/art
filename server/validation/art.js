@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi')
 module.exports = {
   get: data => {
     const schema = Joi.object({
-      id: Joi.number().required()
+      id: Joi.number()
     })
     return schema.validate(data)
   },

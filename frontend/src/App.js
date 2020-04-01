@@ -4,7 +4,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Spinner, Modal} from 'react-bootstrap'
 
-
 class App extends Component {
   constructor(props){
     super(props)
